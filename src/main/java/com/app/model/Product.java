@@ -7,6 +7,8 @@ public class Product {
     private String description;
     private String imageUrl;  // URL to the product image
     private String category;  // Category of the product (e.g., electronics, clothing, etc.)
+    private String title;
+    private String author;
 
     // Getters and setters for the fields
     public int getId() {
@@ -55,5 +57,12 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Object getTitle() {
+    return title;}
+
+    public Object getAuthor() {
+        return author;
     }
 }

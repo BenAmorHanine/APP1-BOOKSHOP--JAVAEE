@@ -5,13 +5,12 @@ import com.app.model.User;
 import java.sql.*;
 
 public class UserDAO {
-
     // Method to create a new user
     public boolean registerUser(User user) throws SQLException, ClassNotFoundException {
         // Set up JDBC connection parameters
         String jdbcURL = "jdbc:mysql://localhost:3306/bookshop";
         String dbUser = "root";
-        String dbPassword = "root";
+        String dbPassword = "";
 
         // Load MySQL JDBC driver
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,7 +40,7 @@ public class UserDAO {
         // Set up JDBC connection parameters
         String jdbcURL = "jdbc:mysql://localhost:3306/bookshop"; // Your database name
         String dbUser = "root"; // Your database username
-        String dbPassword = "root"; // Your database password
+        String dbPassword = ""; // Your database password
 
         // Load MySQL JDBC driver
         Class.forName("com.mysql.cj.jdbc.Driver");

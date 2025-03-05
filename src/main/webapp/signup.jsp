@@ -16,8 +16,8 @@
     <% } %>
 
     <form action="register" method="post">
-        <label for="fullname">Full Name:</label>
-        <input type="text" name="fullname" id="fullname" required>
+        <label for="name">Full Name:</label>
+        <input type="text" name="name" id="name" required>
         <br>
 
         <label for="email">Email:</label>

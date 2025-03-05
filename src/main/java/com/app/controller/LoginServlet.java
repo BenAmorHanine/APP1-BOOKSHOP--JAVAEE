@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
                 // If the user is found, create a session for the user
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user); // Store the user object in the session
-
+                session.setMaxInactiveInterval(90 * 60);
                 // Redirect to the home page
                 response.sendRedirect("home.jsp");
             } else {

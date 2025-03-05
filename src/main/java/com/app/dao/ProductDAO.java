@@ -7,9 +7,9 @@ import java.util.*;
 public class ProductDAO {
 
     // Database connection parameters
-    private static final String jdbcURL = "jdbc:mysql://localhost:3306/ecommerce";
+    private static final String jdbcURL = "jdbc:mysql://localhost:3306/bookshop";
     private static final String dbUser = "root";
-    private static final String dbPassword = "root";
+    private static final String dbPassword = "";
 
     // Method to get all products
     public List<Product> getAllProducts() throws SQLException, ClassNotFoundException {
@@ -32,6 +32,11 @@ public class ProductDAO {
                     products.add(product);
                 }
             }
+        }catch (SQLException e) {
+            // Afficher l'erreur complète pour diagnostiquer
+            System.out.println("Erreur SQL lors de la récupération des produits : " + e.getMessage());
+            e.printStackTrace();  // Afficher la pile d'appel pour plus de détails
+            throw e;
         }
         return products;
     }
