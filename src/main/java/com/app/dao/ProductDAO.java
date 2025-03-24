@@ -64,4 +64,38 @@ public class ProductDAO {
         }
         return product;
     }
+
+    public void addProduct(Product product) throws SQLException, ClassNotFoundException {
+    String sql = "INSERT INTO products (name, price, description, image, category) VALUES (?, ?, ?, ?, ?)";
+
+    try (Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+         PreparedStatement statement = connection.prepareStatement(sql)) {
+
+        statement.setString(1, product.getName());
+        statement.setDouble(2, product.getPrice());
+        statement.setString(3, product.getDescription());
+        statement.setString(4, product.getImageUrl());
+        statement.setString(5, product.getCategory());
+
+        statement.executeUpdate();
+    }
+}
+
+public void updateProduct(Product product) throws SQLException, ClassNotFoundException {
+    String sql = "UPDATE products SET name=?, price=?, description=?, image=?, category=? WHERE id=?";
+
+    try (Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+         PreparedStatement statement = connection.prepareStatement(sql)) {
+
+        statement.setString(1, product.getName());
+        statement.setDouble(2, product.getPrice());
+        statement.setString(3, product.getDescription());
+        statement.setString(4, product.getImageUrl());
+        statement.setString(5, product.getCategory());
+        statement.setInt(6, product.getId());
+
+        statement.executeUpdate();
+    }
+}
+
 }
