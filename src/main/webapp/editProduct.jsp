@@ -25,7 +25,7 @@
     <h2>Edit Product</h2>
 
     <% if (product != null) { %>
-        <form action="modifyProduct" method="post">
+        <form action="editProduct" method="post">
             <input type="hidden" name="id" value="<%= product.getId() %>">
 
             <label>Name:</label>
