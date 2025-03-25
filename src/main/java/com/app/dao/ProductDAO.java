@@ -26,7 +26,7 @@ public class ProductDAO {
                     product.setId(resultSet.getInt("id"));
                     product.setName(resultSet.getString("name"));
                     product.setPrice(resultSet.getDouble("price"));
-                    product.setDescription(resultSet.getString("description"));
+                    product.setAuthor(resultSet.getString("author"));
                     product.setImageUrl(resultSet.getString("image"));
                     product.setCategory(resultSet.getString("category"));
                     products.add(product);
@@ -56,8 +56,8 @@ public class ProductDAO {
                     product.setId(resultSet.getInt("id"));
                     product.setName(resultSet.getString("name"));
                     product.setPrice(resultSet.getDouble("price"));
-                    product.setDescription(resultSet.getString("description"));
-                    product.setImageUrl(resultSet.getString("imageUrl"));
+                    product.setAuthor(resultSet.getString("author"));
+                    product.setImageUrl(resultSet.getString("image"));
                     product.setCategory(resultSet.getString("category"));
                 }
             }
@@ -66,14 +66,14 @@ public class ProductDAO {
     }
 
     public void addProduct(Product product) throws SQLException, ClassNotFoundException {
-    String sql = "INSERT INTO products (name, price, description, image, category) VALUES (?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO products (name, price, author, image, category) VALUES (?, ?, ?, ?, ?)";
 
     try (Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
          PreparedStatement statement = connection.prepareStatement(sql)) {
 
         statement.setString(1, product.getName());
         statement.setDouble(2, product.getPrice());
-        statement.setString(3, product.getDescription());
+        statement.setString(3, product.getAuthor());
         statement.setString(4, product.getImageUrl());
         statement.setString(5, product.getCategory());
 
@@ -82,14 +82,14 @@ public class ProductDAO {
 }
 
 public void updateProduct(Product product) throws SQLException, ClassNotFoundException {
-    String sql = "UPDATE products SET name=?, price=?, description=?, image=?, category=? WHERE id=?";
+    String sql = "UPDATE products SET name=?, price=?, author=?, image=?, category=? WHERE id=?";
 
     try (Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
          PreparedStatement statement = connection.prepareStatement(sql)) {
 
         statement.setString(1, product.getName());
         statement.setDouble(2, product.getPrice());
-        statement.setString(3, product.getDescription());
+        statement.setString(3, product.getAuthor());
         statement.setString(4, product.getImageUrl());
         statement.setString(5, product.getCategory());
         statement.setInt(6, product.getId());
@@ -97,5 +97,16 @@ public void updateProduct(Product product) throws SQLException, ClassNotFoundExc
         statement.executeUpdate();
     }
 }
+
+    public void deleteProduct(int id) throws SQLException {
+        String sql = "DELETE FROM products WHERE id=?";
+
+        try (Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }
+    }
 
 }
