@@ -4,11 +4,11 @@ public class Product {
     private int id;
     private String name;
     private double price;
-    private String description;
+    private String author;
     private String imageUrl;  // URL to the product image
     private String category;  // Category of the product (e.g., electronics, clothing, etc.)
-    private String title;
-    private String author;
+   /* private String title;
+    private String author;*/
 
     // Getters and setters for the fields
     public int getId() {
@@ -35,12 +35,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getImageUrl() {
@@ -59,10 +59,10 @@ public class Product {
         this.category = category;
     }
 
-    public Object getTitle() {
+   /* public Object getTitle() {
     return title;}
 
     public Object getAuthor() {
         return author;
-    }
+    }*/
 }

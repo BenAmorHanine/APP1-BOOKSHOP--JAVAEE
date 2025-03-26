@@ -44,6 +44,7 @@
             <th>Title</th>
             <th>Author</th>
             <th>Price</th>
+            <th>Category</th>
             <th>Image</th>
             <th>Actions</th>
         </tr>
@@ -53,7 +54,9 @@
             <td><%= product.getName() %></td>
             <td><%= product.getAuthor() != null ? product.getAuthor() : "Unknown" %></td>
             <td>$<%= product.getPrice() %></td>
-            <td><img src="images/<%= product.getImageUrl() %>" alt="Book Cover"></td>
+            <td><%= product.getCategory() %></td>
+            <td><img src="<%= product.getImageUrl() %>" width="50"></td>
+
             <td>
                 <a href="editProduct.jsp?id=<%= product.getId() %>">Edit</a> |
                 <a href="deleteProduct?id=<%= product.getId() %>" onclick="return confirm('Are you sure?')">Delete</a>

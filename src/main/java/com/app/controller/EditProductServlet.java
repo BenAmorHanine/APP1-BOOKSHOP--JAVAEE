@@ -23,7 +23,7 @@ public class EditProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        String description = request.getParameter("description");
+        String author = request.getParameter("author");
         double price = Double.parseDouble(request.getParameter("price"));
         String imageUrl = request.getParameter("imageUrl");
         String category = request.getParameter("category");
@@ -31,14 +31,14 @@ public class EditProductServlet extends HttpServlet {
         Product product = new Product();
         product.setId(id);
         product.setName(name);
-        product.setDescription(description);
+        product.setAuthor(author);
         product.setPrice(price);
         product.setImageUrl(imageUrl);
         product.setCategory(category);
 
         try {
             productDAO.updateProduct(product);
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("adminDashboard.jsp");
         } catch (SQLException | ClassNotFoundException e) {
             throw new ServletException("Error updating product", e);
         }

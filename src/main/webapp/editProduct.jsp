@@ -34,8 +34,8 @@
             <label>Price:</label>
             <input type="number" name="price" step="0.01" value="<%= product.getPrice() %>" required><br>
 
-            <label>Description:</label>
-            <textarea name="description" required><%= product.getDescription() %></textarea><br>
+            <label>author:</label>
+            <input type="text" name="author"  value="<%= product.getAuthor() %>" required ><br>
 
             <label>Image URL:</label>
             <input type="text" name="imageUrl" value="<%= product.getImageUrl() %>"><br>
@@ -43,11 +43,8 @@
             <label>Category:</label>
             <input type="text" name="category" value="<%= product.getCategory() %>" required><br>
 
-            <label>Title:</label>
-            <input type="text" name="title" value="<%= product.getTitle() %>"><br>
 
-            <label>Author:</label>
-            <input type="text" name="author" value="<%= product.getAuthor() %>"><br>
+
 
             <button type="submit">Update Product</button>
         </form>

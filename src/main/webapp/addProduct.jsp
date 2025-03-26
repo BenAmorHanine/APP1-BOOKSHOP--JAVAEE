@@ -13,17 +13,12 @@
         <label>Price:</label>
         <input type="number" name="price" step="0.01" required><br>
 
-        <label>Description:</label>
-        <textarea name="description" required></textarea><br>
 
         <label>Image URL:</label>
-        <input type="text" name="imageUrl"><br>
+        <input type="text" name="imageUrl" required><br>
 
         <label>Category:</label>
         <input type="text" name="category" required><br>
-
-        <label>Title:</label>
-        <input type="text" name="title"><br>
 
         <label>Author:</label>
         <input type="text" name="author"><br>
