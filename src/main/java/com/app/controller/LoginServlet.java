@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import com.app.utils.SessionUtil;
+import com.app.utils.Constants;
+import com.app.utils.Modules;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -33,22 +36,21 @@ public class LoginServlet extends HttpServlet {
         // Create UserDAO instance to check credentials
         UserDAO userDAO = new UserDAO();
         try {
-            // Check if the user exists with the provided email and password
             User user = userDAO.checkLogin(email, password);
 
             if (user != null) {
-                // If the user is found, create a session for the user
-                HttpSession session = request.getSession();
-                session.setAttribute("user", user); // Store the user object in the session
-                session.setMaxInactiveInterval(90 * 60);
-                // Redirect to the home page
+                // Créer la session utilisateur
+                SessionUtil.createUserSession(request, user);
+
+                // ✅ Création de cookies pour cet utilisateur
+                Modules.setUserCookies(response, user);
+
+                // ✅ Redirection vers la page d'accueil
                 response.sendRedirect("home.jsp");
             } else {
-                // If no match is found, redirect back to login page with error
                 response.sendRedirect("login.jsp?error=1");
             }
         } catch (SQLException | ClassNotFoundException e) {
-            // Handle database errors
             e.printStackTrace();
             response.sendRedirect("login.jsp?error=1");
         }

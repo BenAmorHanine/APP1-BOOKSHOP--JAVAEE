@@ -1,5 +1,6 @@
 package com.app.controller;
-
+import com.app.utils.Modules;
+import com.app.utils.SessionUtil;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,11 +15,12 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Invalidate the session
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
+
+        //Supprimer la session
+        SessionUtil.destroySession(request);
+
+        //Supprimer les cookies
+        Modules.removeUserCookies(request, response);
 
         // Redirect to the login page
         response.sendRedirect("login.jsp");
